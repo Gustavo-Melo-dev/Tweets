@@ -8,11 +8,39 @@ use Livewire\Component;
 class ShowTweets extends Component
 {
 
-    public $message = "Testando!";
+    public $content = "Tweets! ('o')";
     public $showTweets;
+
+    protected $rules = [
+        'content' => 'required|min:3|max:255'
+    ];
 
     public function showTweets() {
         return Tweet::with('user')->get();
+    }
+
+    public function createTweets() {
+        $this->validate();
+        
+        auth()->user()->tweets()->create([
+            'content' => $this->content,
+        ]);
+        
+        $this->content = '';
+    }
+
+    public function like($tweet_id) {
+        $tweet = Tweet::find($tweet_id);
+
+        $tweet->likes()->create([
+            'user_id' => auth()->user()->id
+        ]);
+    }
+
+    public function deslike($tweet_id) {
+        $tweet = Tweet::find($tweet_id);
+
+        $tweet->likes()->delete($tweet);
     }
 
     public function mount() {
