@@ -10,6 +10,11 @@
         </form>
 
         @foreach ($showTweets as $tweet)
+            @if ($tweet->user->profile_photo_path)
+                <img src="{{ Storage::url($tweet->user->profile_photo_path) }}" alt="{{ $tweet->user->name }}">
+            @else
+                <img src="css/img/no-image.png" alt="{{ $tweet->user->name }}">
+            @endif
             <p>{{ $tweet->user->name }} - {{ $tweet->content}} - 
                 @if( $tweet->likes->count())
                     <a href="#"  wire:click.prevent="deslike({{ $tweet->id }})">Descurtir</a>
