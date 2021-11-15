@@ -7,7 +7,7 @@
 <div class="flex justify-center align-items-center w-full py-5 flex-wrap">
     <div class="flex flex-col justify-center align-items-center py-5 w-2/5">
         <form method="post" wire:submit.prevent="createTweets">
-            <input placeholder="Tweets \O/" type="text" id="content" name="content" wire:model="content" class=" w-full rounded-full">
+            <input placeholder="Tweets \O/" type="text" id="content" name="content" wire:model="content" class=" w-full rounded-full border-indigo-700">
             @error('content')
                 <span class="py-5">{{ $message }}</span>
             @enderror
