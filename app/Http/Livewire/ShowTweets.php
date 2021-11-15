@@ -8,7 +8,7 @@ use Livewire\Component;
 class ShowTweets extends Component
 {
 
-    public $content = "Tweets! ('o')";
+    public $content;
     public $showTweets;
 
     protected $rules = [

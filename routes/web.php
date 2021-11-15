@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/upload', UploadPhoto::class)->middleware('auth');
-Route::get('/tweets', ShowTweets::class)->middleware('auth');
+Route::get('/tweets', ShowTweets::class)->name('tweets')->middleware('auth');
+Route::get('/',function(){
+    return redirect()->route('tweets');
+})->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
